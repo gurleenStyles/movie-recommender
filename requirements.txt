@@ -1,1 +1,3 @@
-pandas\nnumpy\n
+pandas
+numpy
+scikit-learn
