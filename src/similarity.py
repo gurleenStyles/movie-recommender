@@ -1,0 +1,1 @@
+import numpy as np\n\ndef calculate_similarity(matrix):\n    pass\n

@@ -1,0 +1,1 @@
+def main():\n    print("Movie Recommender App")\n\nif __name__ == "__main__":\n    main()\n

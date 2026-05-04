@@ -1,0 +1,1 @@
+class Recommender:\n    def __init__(self):\n        pass\n    \n    def recommend(self, user_id):\n        pass\n

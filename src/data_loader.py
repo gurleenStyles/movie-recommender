@@ -1,0 +1,1 @@
+import pandas as pd\n\ndef load_data(filepath):\n    pass\n
