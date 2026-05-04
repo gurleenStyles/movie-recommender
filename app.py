@@ -1,4 +1,6 @@
 import numpy as np
+from pathlib import Path
+import os
 from src.data_loader import load_raw_data, merge_datasets
 from src.preprocessor import create_user_item_matrix, get_numpy_matrix
 from src.similarity import calculate_similarity
@@ -19,11 +21,20 @@ def main():
     print("Creating User-Item matrix...")
     user_item_matrix = create_user_item_matrix(merged_data)
 
-    # Pipeline Step 4: Calculate Similarity similarity
-    similarity_matrix = calculate_similarity(get_numpy_matrix(user_item_matrix))
-    print(f"Saving similarity matrix of size {similarity_matrix.shape} to disk...")
-    np.save('data/processed/similarity_matrix.npy', similarity_matrix)  # Saving to your processed folder instead of the root!
+       # Pipeline Step 4: Calculate Similarity
+    numpy_matrix = get_numpy_matrix(user_item_matrix)
+    similarity_matrix = calculate_similarity(numpy_matrix)
     
+    print(f"Saving similarity matrix of size {similarity_matrix.shape} to disk...")
+    # Dynamically find the absolute path to /data/processed
+    project_root = Path(__file__).parent
+    processed_dir = project_root / 'data' / 'processed'
+    
+    # Force create the directory if it doesn't exist
+    os.makedirs(processed_dir, exist_ok=True)
+    
+    # Save safely
+    np.save(processed_dir / 'similarity_matrix.npy', similarity_matrix)
 
     # Extract NumPy array
     numpy_matrix = get_numpy_matrix(user_item_matrix)
